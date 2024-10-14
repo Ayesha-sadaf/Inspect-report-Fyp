@@ -1,7 +1,7 @@
 import boto3
 import sys
 import os
-# from pprint import pprint
+
 from dotenv import load_dotenv
 
 def initialize_textract_client():
@@ -17,7 +17,6 @@ def initialize_textract_client():
         print("AWS credentials not found in environment variables.")
         return None
 
-    # Initialize boto3 client with explicit credentials from environment
     client = boto3.client(
         'textract',
         aws_access_key_id=aws_access_key,
@@ -82,10 +81,8 @@ def extract_tables_from_images(file_name):
     except Exception as e:
         print(f"Error calling Textract: {e}")
         sys.exit(1)
-
     # Get the blocks from the response
     blocks = response.get('Blocks', [])
-    # blocks_map = {block['Id']: block for block in blocks} 
 
     return blocks
 
