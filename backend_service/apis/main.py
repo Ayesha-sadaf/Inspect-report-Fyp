@@ -8,9 +8,7 @@ from middleware.report_gen import analyze_with_model
 import traceback
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-# Construct the path to the middleware directory
-middleware_dir = os.path.join(current_dir, '..', '/middleware')  # Go one level up to project_root and then into middleware
-# Add the middleware directory to the Python path
+middleware_dir = os.path.join(current_dir, '..', '/middleware')  
 sys.path.insert(0, middleware_dir)
 
 app = FastAPI()
@@ -37,7 +35,7 @@ async def create_upload_file(file: UploadFile= File(..., description="PDF file t
     except:
         print(f"Error writing file: {e}")
     
-    # extract_main(file_name)
+  
     pdf_to_images(file_name,'./images.png')
 
     csv_data =extract_main('./images.png/report_img.png')
@@ -48,18 +46,18 @@ async def create_upload_file(file: UploadFile= File(..., description="PDF file t
         model_output = await analyze_with_model(json_data)
         return {
             "message": "PDF processed successfully",
-            "model_analysis": model_output  # Return model's analysis
+            "model_analysis": model_output 
         }
     except Exception as e:
-        # Log the full traceback for debugging
+  
         
-        error_trace = traceback.format_exc()  # Get the detailed traceback
-        print(f"Error during processing: {error_trace}")  # Print the full error details
+        error_trace = traceback.format_exc()  
+        print(f"Error during processing: {error_trace}")  
 
         return {
             "error": "Error processing PDF",
-            "details": str(e),  # Return the actual error message
-            "traceback": error_trace  # Return the full error traceback for debugging
+            "details": str(e),  
+            "traceback": error_trace  
         }
 if __name__ == "__main__":
     import uvicorn
