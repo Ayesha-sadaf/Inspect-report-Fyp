@@ -1,0 +1,17 @@
+{
+    "Parameter": {
+        "Value": [
+            "Result",
+            "Result (Unit)",
+            "Normal Values"
+        ]
+    },
+    "FACTOR VIII": {
+        "Value": [
+            " PLASMA",
+            "69.2",
+            "%",
+            "50-149"
+        ]
+    }
+}

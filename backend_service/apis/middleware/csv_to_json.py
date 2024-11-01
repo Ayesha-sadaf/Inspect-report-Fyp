@@ -23,7 +23,8 @@ def convert_csv_to_single_json(csv_content):
             }
             with open(json_file_path, 'w', encoding='utf-8') as jsonfile:
                 json.dump(data, jsonfile, indent=4)
-        print(f"Data has been successfully converted to {json_file_path}")
+    
+    print(f"Data has been successfully converted to {json_file_path}")
 
     return data
 

@@ -59,11 +59,7 @@ async def create_upload_file(file: UploadFile = File(..., description="PDF file 
     try:
         model_output = await analyze_with_model(json_data)
 
- 
-        escaped_response = model_output.get("response", "")
-        json_response = json.loads(escaped_response) 
-
-        return json_response  
+        return model_output
     except Exception as e:
     
         error_trace = traceback.format_exc() 
